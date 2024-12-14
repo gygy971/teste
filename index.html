@@ -187,76 +187,16 @@
     <script>
         const categories = {
             "Électronique": [
-                { name: "Smartphone", price: "599€", image: "https://via.placeholder.com/300x200?text=Smartphone", description: "Un smartphone dernier cri avec toutes les fonctionnalités modernes.", link: "https://www.amazon.fr" },
-                { name: "Casque Bluetooth", price: "129€", image: "https://via.placeholder.com/300x200?text=Casque", description: "Un casque Bluetooth de qualité supérieure pour une immersion totale.", link: "https://www.amazon.fr" }
+                { name: "Smartphone Samsung Galaxy S21", price: "699€", image: "https://m.media-amazon.com/images/I/81r1vO0bAVL._AC_SX679_.jpg", description: "Smartphone avec écran AMOLED, triple caméra et design élégant.", link: "https://amzn.to/3Y0yz7e" },
+                { name: "Casque Bose QuietComfort 35 II", price: "249€", image: "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SX679_.jpg", description: "Casque Bluetooth haut de gamme avec réduction de bruit.", link: "https://amzn.to/3Y2lQml" },
+                { name: "Montre Connectée Apple Watch Series 7", price: "429€", image: "https://m.media-amazon.com/images/I/71z5xjU14LL._AC_SX679_.jpg", description: "Montre connectée avec écran Retina, GPS et suivi santé.", link: "https://amzn.to/3PxW9rT" }
             ],
             "Maison": [
-                { name: "Chaise Ergonomique", price: "199€", image: "https://via.placeholder.com/300x200?text=Chaise", description: "Une chaise confortable pour travailler sans douleur.", link: "https://www.amazon.fr" },
-                { name: "Couteaux de Cuisine", price: "99€", image: "https://via.placeholder.com/300x200?text=Couteaux", description: "Un set de couteaux pour toutes vos préparations culinaires.", link: "https://www.amazon.fr" }
+                { name: "Aspirateur Dyson V10 Absolute", price: "599€", image: "https://m.media-amazon.com/images/I/71wYpu2yPFL._AC_SX679_.jpg", description: "Aspirateur sans fil puissant pour tous types de sols.", link: "https://amzn.to/3PoO8lU" },
+                { name: "Robot Cuiseur Moulinex Companion", price: "749€", image: "https://m.media-amazon.com/images/I/71Q1m9wYOJL._AC_SX679_.jpg", description: "Robot cuiseur multifonction pour des plats maison faciles.", link: "https://amzn.to/3Pe4M0M" },
+                { name: "Fauteuil de Bureau Ergonomique", price: "129€", image: "https://m.media-amazon.com/images/I/71UG9GeUr8L._AC_SX679_.jpg", description: "Confort optimal pour les longues journées de travail.", link: "https://amzn.to/3sYrWxR" }
             ],
             "Mode": [
-                { name: "Montre Connectée", price: "149€", image: "https://via.placeholder.com/300x200?text=Montre", description: "Une montre connectée élégante et fonctionnelle.", link: "https://www.amazon.fr" }
-            ]
-        };
-
-        function displayCategories() {
-            const categoriesDiv = document.querySelector(".categories");
-            categoriesDiv.innerHTML = "";
-
-            for (let category in categories) {
-                const button = document.createElement("button");
-                button.textContent = category;
-                button.addEventListener("click", () => displayProducts(category));
-                categoriesDiv.appendChild(button);
-            }
-        }
-
-        function displayProducts(category) {
-            const productList = document.querySelector(".product-list");
-            productList.innerHTML = "";
-
-            categories[category].forEach(product => {
-                const productCard = document.createElement("div");
-                productCard.classList.add("product-card");
-                productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p class="price">${product.price}</p>
-                    <a href="${product.link}" target="_blank">
-                        <button>Acheter</button>
-                    </a>
-                `;
-                productList.appendChild(productCard);
-            });
-        }
-
-        window.onload = () => {
-            displayCategories();
-        };
-    </script>
-</head>
-<body>
-    <header>
-        <img src="https://via.placeholder.com/100x50?text=Logo" alt="Logo">
-        <h1>Plateforme d'Affiliation</h1>
-        <div class="navigation">
-            <button onclick="window.history.back()">Retour</button>
-            <button onclick="location.href='index.html'">🏠 Accueil</button>
-        </div>
-    </header>
-
-    <div class="search-bar">
-        <input type="text" placeholder="Rechercher un produit...">
-        <button>Rechercher</button>
-    </div>
-
-    <div class="categories"></div>
-
-    <div class="product-list"></div>
-
-    <footer>
-        <p>&copy; 2024 Plateforme d'Affiliation</p>
-    </footer>
-</body>
-</html>
+                { name: "Veste en Cuir Homme", price: "199€", image: "https://m.media-amazon.com/images/I/81QNz+NKmQL._AC_UX679_.jpg", description: "Veste élégante et intemporelle en cuir véritable.", link: "https://amzn.to/3L6rJmy" },
+                { name: "Montre Fossil Femme", price: "159€", image: "https://m.media-amazon.com/images/I/71aG+EF1N+L._AC_UX679_.jpg", description: "Montre mode avec bracelet doré et cadran élégant.", link: "https://amzn.to/3L5UM9Z" },
+                { name: "Sneakers Nike Air Max", price: "129€", image: "https://m.media-amazon.com/images/I/71K9GbF4bzL._AC_UX679_.jpg", description: "Baskets confortables avec un design
