@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme de Vente</title>
+    <title>Plateforme de Vente - Achat</title>
     <style>
-        /* Style global */
+        /* Styles globaux */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,40 +23,52 @@
             color: white;
         }
 
-        header .search-bar input {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
+        header h1 {
+            font-size: 1.5rem;
         }
 
-        header .cart-icon {
+        .navigation-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navigation-buttons button {
+            background: white;
+            color: #0077b6;
+            border: 1px solid #0077b6;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1.5rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .navigation-buttons button:hover {
+            background: #023e8a;
+            color: white;
         }
 
         .categories {
             margin: 1rem 2rem;
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .categories select {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-
-        .promotions {
-            margin: 1rem 2rem;
+        .categories button {
+            flex: 1;
+            min-width: 200px;
             padding: 1rem;
-            background: #fff1e6;
+            border: none;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #90e0ef;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        .promotions h2 {
-            margin-bottom: 1rem;
+        .categories button:hover {
+            transform: scale(1.1);
         }
 
         .product-list {
@@ -72,7 +84,6 @@
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
             overflow: hidden;
             transition: transform 0.3s;
         }
@@ -93,21 +104,8 @@
             margin: 0.5rem 0;
         }
 
-        .backdrop, .modal {
-            display: none;
-        }
-
-        .backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
         .modal {
+            display: none;
             position: fixed;
             top: 10%;
             left: 10%;
@@ -117,15 +115,23 @@
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .modal img {
-            width: 80%;
+            width: 100%;
             height: auto;
             border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .modal h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal .price {
+            font-size: 1.2rem;
+            color: #0077b6;
             margin-bottom: 1rem;
         }
 
@@ -136,8 +142,6 @@
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 1rem;
-            transition: background 0.3s;
         }
 
         .modal button:hover {
@@ -149,110 +153,88 @@
             color: white;
             text-align: center;
             padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 2rem;
-        }
-
-        .navigation-buttons button {
-            padding: 0.5rem 1rem;
-        }
-
-        .home-button {
-            padding: 0.5rem;
-            font-size: 1.5rem;
-            background: #0077b6;
-            border-radius: 50%;
         }
     </style>
     <script>
-        const products = [
-            { id: 1, name: "Smartphone", category: "Électronique", price: "599€", image: "https://placehold.co/300x200?text=Smartphone" },
-            { id: 2, name: "Chaise Ergonomique", category: "Maison", price: "199€", image: "https://placehold.co/300x200?text=Chaise" },
-            { id: 3, name: "Montre Connectée", category: "Mode", price: "149€", image: "https://placehold.co/300x200?text=Montre" },
-            { id: 4, name: "Couteaux de Cuisine", category: "Maison", price: "99€", image: "https://placehold.co/300x200?text=Couteaux" },
-            { id: 5, name: "Casque Bluetooth", category: "Électronique", price: "129€", image: "https://placehold.co/300x200?text=Casque" },
-            { id: 6, name: "Ensemble de Vaisselle", category: "Maison", price: "79€", image: "https://placehold.co/300x200?text=Vaisselle" },
-        ];
+        const categories = {
+            "Électronique": [
+                { name: "Smartphone", price: "599€", image: "https://placehold.co/300x200?text=Smartphone", description: "Un smartphone dernier cri avec toutes les fonctionnalités modernes." },
+                { name: "Casque Bluetooth", price: "129€", image: "https://placehold.co/300x200?text=Casque", description: "Un casque Bluetooth de qualité supérieure pour une immersion totale." }
+            ],
+            "Maison": [
+                { name: "Chaise Ergonomique", price: "199€", image: "https://placehold.co/300x200?text=Chaise", description: "Une chaise confortable pour travailler sans douleur." },
+                { name: "Couteaux de Cuisine", price: "99€", image: "https://placehold.co/300x200?text=Couteaux", description: "Un set de couteaux pour toutes vos préparations culinaires." }
+            ],
+            "Mode": [
+                { name: "Montre Connectée", price: "149€", image: "https://placehold.co/300x200?text=Montre", description: "Une montre connectée élégante et fonctionnelle." }
+            ]
+        };
 
-        function displayProducts(category = "") {
+        function displayCategories() {
+            const categoriesDiv = document.querySelector(".categories");
+            categoriesDiv.innerHTML = "";
+
+            for (let category in categories) {
+                const button = document.createElement("button");
+                button.textContent = category;
+                button.addEventListener("click", () => displayProducts(category));
+                categoriesDiv.appendChild(button);
+            }
+        }
+
+        function displayProducts(category) {
             const productList = document.querySelector(".product-list");
             productList.innerHTML = "";
 
-            const filteredProducts = category
-                ? products.filter((product) => product.category === category)
-                : products;
-
-            filteredProducts.forEach((product) => {
+            categories[category].forEach(product => {
                 const productCard = document.createElement("div");
                 productCard.classList.add("product-card");
                 productCard.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
+                    <p>${product.description}</p>
                     <p class="price">${product.price}</p>
+                    <button onclick="openModal('${product.name}', '${product.price}', '${product.image}', '${product.description}')">Acheter</button>
                 `;
-                productCard.addEventListener("click", () => openModal(product));
                 productList.appendChild(productCard);
             });
         }
 
-        function openModal(product) {
+        function openModal(name, price, image, description) {
             const modal = document.querySelector(".modal");
-            const backdrop = document.querySelector(".backdrop");
-
-            modal.querySelector("img").src = product.image;
-            modal.querySelector("h2").textContent = product.name;
-            modal.querySelector("p").textContent = `Prix : ${product.price}`;
-            modal.style.display = "flex";
-            backdrop.style.display = "block";
+            modal.style.display = "block";
+            modal.innerHTML = `
+                <img src="${image}" alt="${name}">
+                <h2>${name}</h2>
+                <p class="price">Prix : ${price}</p>
+                <p>${description}</p>
+                <button onclick="closeModal()">Fermer</button>
+            `;
         }
 
         function closeModal() {
             document.querySelector(".modal").style.display = "none";
-            document.querySelector(".backdrop").style.display = "none";
         }
 
-        window.onload = () => displayProducts();
+        window.onload = () => {
+            displayCategories();
+        };
     </script>
 </head>
 <body>
     <header>
-        <h1>Plateforme de Vente</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Rechercher un produit...">
+        <h1>Page Achat</h1>
+        <div class="navigation-buttons">
+            <button onclick="window.history.back()">Retour</button>
+            <button onclick="location.href='index.html'">🏠</button>
         </div>
-        <div class="cart-icon">🛒</div>
     </header>
 
-    <div class="categories">
-        <select onchange="displayProducts(this.value)">
-            <option value="">Toutes les catégories</option>
-            <option value="Électronique">Électronique</option>
-            <option value="Maison">Maison</option>
-            <option value="Mode">Mode</option>
-        </select>
-    </div>
-
-    <div class="promotions">
-        <h2>Promotions</h2>
-        <p>Découvrez nos meilleures offres !</p>
-    </div>
+    <div class="categories"></div>
 
     <div class="product-list"></div>
 
-    <div class="backdrop" onclick="closeModal()"></div>
-    <div class="modal">
-        <img src="" alt="Produit">
-        <h2></h2>
-        <p></p>
-        <button onclick="closeModal()">Fermer</button>
-    </div>
+    <div class="modal"></div>
 
     <footer>
         <p>&copy; 2024 Plateforme de Vente</p>
