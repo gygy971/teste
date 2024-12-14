@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site de Vente Interactif</title>
+    <title>Site de Vente Interactif - Détaillé</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background: linear-gradient(120deg, #a0c4ff, #b9fbc0);
+            background: linear-gradient(120deg, #f6d365, #fda085);
             color: #333;
         }
 
@@ -23,7 +23,7 @@
             padding: 2rem;
         }
 
-        button, input[type="text"] {
+        button, input[type="text"], textarea {
             padding: 1rem;
             margin: 1rem;
             font-size: 1rem;
@@ -43,6 +43,7 @@
 
         .container {
             text-align: center;
+            max-width: 800px;
         }
 
         nav {
@@ -92,6 +93,14 @@
             bottom: 0;
             width: 100%;
         }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
     </style>
     <script>
         function showPage(pageId) {
@@ -103,12 +112,14 @@
         function addProduct() {
             const productName = document.getElementById('product-name').value;
             const productDescription = document.getElementById('product-description').value;
+            const productImage = document.getElementById('product-image').value;
             const productList = document.getElementById('product-list');
 
-            if (productName && productDescription) {
+            if (productName && productDescription && productImage) {
                 const productCard = document.createElement('div');
                 productCard.classList.add('product-card');
                 productCard.innerHTML = `
+                    <img src="${productImage}" alt="${productName}">
                     <h3>${productName}</h3>
                     <p>${productDescription}</p>
                 `;
@@ -132,7 +143,8 @@
     <!-- Page 2 -->
     <section id="page2" class="hidden">
         <div class="container">
-            <h1>Que voulez-vous faire ?</h1>
+            <h1>Que souhaitez-vous faire ?</h1>
+            <p>Choisissez une option ci-dessous pour continuer.</p>
             <nav>
                 <button onclick="showPage('page2a')">Vente</button>
                 <button onclick="showPage('page2b')">Revente</button>
@@ -144,8 +156,8 @@
     <!-- Page 2a: Vente -->
     <section id="page2a" class="hidden">
         <div class="container">
-            <h1>Menu Principal AliExpress</h1>
-            <p>Cliquer pour ouvrir le site AliExpress</p>
+            <h1>Vente via AliExpress</h1>
+            <p>Accédez à AliExpress pour trouver les meilleurs produits à vendre.</p>
             <a href="https://www.aliexpress.com" target="_blank">
                 <button>Accéder à AliExpress</button>
             </a>
@@ -157,11 +169,14 @@
     <section id="page2b" class="hidden">
         <div class="container">
             <h1>Ajoutez vos produits à vendre</h1>
+            <p>Entrez les détails de vos produits pour les proposer à la vente.</p>
             <div class="form-section">
                 <label for="product-name">Nom du produit :</label><br>
                 <input type="text" id="product-name" placeholder="Nom du produit"><br>
                 <label for="product-description">Description du produit :</label><br>
                 <textarea id="product-description" placeholder="Description"></textarea><br>
+                <label for="product-image">URL de l'image :</label><br>
+                <input type="text" id="product-image" placeholder="URL de l'image"><br>
                 <button onclick="addProduct()">Ajouter le produit</button>
             </div>
             <button onclick="showPage('page2')">Retour</button>
@@ -172,6 +187,7 @@
     <section id="page2c" class="hidden">
         <div class="container">
             <h1>Produits disponibles à l'achat</h1>
+            <p>Découvrez les produits proposés par les utilisateurs.</p>
             <div id="product-list" class="product-list">
                 <div class="product-card">
                     <img src="https://via.placeholder.com/300" alt="Produit 1">
