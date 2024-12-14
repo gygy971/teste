@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Vente Interactif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(120deg, #a0c4ff, #b9fbc0);
+            color: #333;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 2rem;
+        }
+
+        button, input[type="text"] {
+            padding: 1rem;
+            margin: 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0077b6;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem;
+        }
+
+        nav button {
+            width: 30%;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .form-section {
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: #03045e;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('section');
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function addProduct() {
+            const productName = document.getElementById('product-name').value;
+            const productDescription = document.getElementById('product-description').value;
+            const productList = document.getElementById('product-list');
+
+            if (productName && productDescription) {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.innerHTML = `
+                    <h3>${productName}</h3>
+                    <p>${productDescription}</p>
+                `;
+                productList.appendChild(productCard);
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Page 1 -->
+    <section id="page1">
+        <div class="container">
+            <h1>Bienvenue sur notre site de vente</h1>
+            <p>Entrez votre prénom pour continuer :</p>
+            <input type="text" id="prenom" placeholder="Votre prénom">
+            <button onclick="showPage('page2')">Valider</button>
+        </div>
+    </section>
+
+    <!-- Page 2 -->
+    <section id="page2" class="hidden">
+        <div class="container">
+            <h1>Que voulez-vous faire ?</h1>
+            <nav>
+                <button onclick="showPage('page2a')">Vente</button>
+                <button onclick="showPage('page2b')">Revente</button>
+                <button onclick="showPage('page2c')">Achat</button>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Page 2a: Vente -->
+    <section id="page2a" class="hidden">
+        <div class="container">
+            <h1>Menu Principal AliExpress</h1>
+            <p>Cliquer pour ouvrir le site AliExpress</p>
+            <a href="https://www.aliexpress.com" target="_blank">
+                <button>Accéder à AliExpress</button>
+            </a>
+            <button onclick="showPage('page2')">Retour</button>
+        </div>
+    </section>
+
+    <!-- Page 2b: Revente -->
+    <section id="page2b" class="hidden">
+        <div class="container">
+            <h1>Ajoutez vos produits à vendre</h1>
+            <div class="form-section">
+                <label for="product-name">Nom du produit :</label><br>
+                <input type="text" id="product-name" placeholder="Nom du produit"><br>
+                <label for="product-description">Description du produit :</label><br>
+                <textarea id="product-description" placeholder="Description"></textarea><br>
+                <button onclick="addProduct()">Ajouter le produit</button>
+            </div>
+            <button onclick="showPage('page2')">Retour</button>
+        </div>
+    </section>
+
+    <!-- Page 2c: Achat -->
+    <section id="page2c" class="hidden">
+        <div class="container">
+            <h1>Produits disponibles à l'achat</h1>
+            <div id="product-list" class="product-list">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="Produit 1">
+                    <h3>Produit exemple 1</h3>
+                    <p>Description du produit exemple 1</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="Produit 2">
+                    <h3>Produit exemple 2</h3>
+                    <p>Description du produit exemple 2</p>
+                </div>
+            </div>
+            <button onclick="showPage('page2')">Retour</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Site de Vente Interactif</p>
+    </footer>
+
+</body>
+</html>
