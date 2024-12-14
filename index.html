@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme de Vente - Achat</title>
+    <title>Plateforme d'Affiliation</title>
     <style>
         /* Styles globaux */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #d9faff, #cfe8ff);
+            background: linear-gradient(120deg, #f0f4f8, #d9e8ff);
             color: #333;
         }
 
@@ -23,16 +23,21 @@
             color: white;
         }
 
-        header h1 {
-            font-size: 1.5rem;
+        header img {
+            height: 50px;
         }
 
-        .navigation-buttons {
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .navigation {
             display: flex;
             gap: 10px;
         }
 
-        .navigation-buttons button {
+        .navigation button {
             background: white;
             color: #0077b6;
             border: 1px solid #0077b6;
@@ -42,9 +47,33 @@
             transition: background 0.3s, color 0.3s;
         }
 
-        .navigation-buttons button:hover {
+        .navigation button:hover {
             background: #023e8a;
             color: white;
+        }
+
+        .search-bar {
+            margin: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            background: #0077b6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         .categories {
@@ -158,15 +187,15 @@
     <script>
         const categories = {
             "Électronique": [
-                { name: "Smartphone", price: "599€", image: "https://placehold.co/300x200?text=Smartphone", description: "Un smartphone dernier cri avec toutes les fonctionnalités modernes." },
-                { name: "Casque Bluetooth", price: "129€", image: "https://placehold.co/300x200?text=Casque", description: "Un casque Bluetooth de qualité supérieure pour une immersion totale." }
+                { name: "Smartphone", price: "599€", image: "https://via.placeholder.com/300x200?text=Smartphone", description: "Un smartphone dernier cri avec toutes les fonctionnalités modernes.", link: "https://www.amazon.fr" },
+                { name: "Casque Bluetooth", price: "129€", image: "https://via.placeholder.com/300x200?text=Casque", description: "Un casque Bluetooth de qualité supérieure pour une immersion totale.", link: "https://www.amazon.fr" }
             ],
             "Maison": [
-                { name: "Chaise Ergonomique", price: "199€", image: "https://placehold.co/300x200?text=Chaise", description: "Une chaise confortable pour travailler sans douleur." },
-                { name: "Couteaux de Cuisine", price: "99€", image: "https://placehold.co/300x200?text=Couteaux", description: "Un set de couteaux pour toutes vos préparations culinaires." }
+                { name: "Chaise Ergonomique", price: "199€", image: "https://via.placeholder.com/300x200?text=Chaise", description: "Une chaise confortable pour travailler sans douleur.", link: "https://www.amazon.fr" },
+                { name: "Couteaux de Cuisine", price: "99€", image: "https://via.placeholder.com/300x200?text=Couteaux", description: "Un set de couteaux pour toutes vos préparations culinaires.", link: "https://www.amazon.fr" }
             ],
             "Mode": [
-                { name: "Montre Connectée", price: "149€", image: "https://placehold.co/300x200?text=Montre", description: "Une montre connectée élégante et fonctionnelle." }
+                { name: "Montre Connectée", price: "149€", image: "https://via.placeholder.com/300x200?text=Montre", description: "Une montre connectée élégante et fonctionnelle.", link: "https://www.amazon.fr" }
             ]
         };
 
@@ -194,26 +223,12 @@
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p class="price">${product.price}</p>
-                    <button onclick="openModal('${product.name}', '${product.price}', '${product.image}', '${product.description}')">Acheter</button>
+                    <a href="${product.link}" target="_blank">
+                        <button>Acheter</button>
+                    </a>
                 `;
                 productList.appendChild(productCard);
             });
-        }
-
-        function openModal(name, price, image, description) {
-            const modal = document.querySelector(".modal");
-            modal.style.display = "block";
-            modal.innerHTML = `
-                <img src="${image}" alt="${name}">
-                <h2>${name}</h2>
-                <p class="price">Prix : ${price}</p>
-                <p>${description}</p>
-                <button onclick="closeModal()">Fermer</button>
-            `;
-        }
-
-        function closeModal() {
-            document.querySelector(".modal").style.display = "none";
         }
 
         window.onload = () => {
@@ -223,21 +238,25 @@
 </head>
 <body>
     <header>
-        <h1>Page Achat</h1>
-        <div class="navigation-buttons">
+        <img src="https://via.placeholder.com/100x50?text=Logo" alt="Logo">
+        <h1>Plateforme d'Affiliation</h1>
+        <div class="navigation">
             <button onclick="window.history.back()">Retour</button>
-            <button onclick="location.href='index.html'">🏠</button>
+            <button onclick="location.href='index.html'">🏠 Accueil</button>
         </div>
     </header>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Rechercher un produit...">
+        <button>Rechercher</button>
+    </div>
 
     <div class="categories"></div>
 
     <div class="product-list"></div>
 
-    <div class="modal"></div>
-
     <footer>
-        <p>&copy; 2024 Plateforme de Vente</p>
+        <p>&copy; 2024 Plateforme d'Affiliation</p>
     </footer>
 </body>
 </html>
