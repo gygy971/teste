@@ -51,6 +51,26 @@
             height: 100px;
         }
 
+        .navigation-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .navigation-buttons button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+        }
+
+        .navigation-buttons .home-button {
+            padding: 0.5rem;
+            font-size: 1.5rem;
+            background: #0077b6;
+            border-radius: 50%;
+        }
+
         .product-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -126,6 +146,17 @@
                 section.style.display = "none";
             });
             document.getElementById(page).style.display = "flex";
+            currentPage = page;
+        }
+
+        function goBack() {
+            if (currentPage === "page-vente") {
+                goToPage("page-2");
+            } else if (currentPage === "page-revente") {
+                goToPage("page-2");
+            } else if (currentPage === "page-achat") {
+                goToPage("page-2");
+            }
         }
 
         function handleNameSubmit() {
@@ -143,7 +174,7 @@
             const products = Array.from({ length: 12 }, (_, i) => ({
                 id: i + 1,
                 name: `Produit ${i + 1}`,
-                image: `https://placehold.co/300x300?text=Produit+${i + 1}`, 
+                image: `https://placehold.co/300x300?text=Produit+${i + 1}`,
                 description: `Description du produit ${i + 1}`,
                 price: `${(i + 1) * 10} €`,
             }));
@@ -209,6 +240,10 @@
     <section id="page-achat">
         <h1>Produits disponibles</h1>
         <div class="product-list"></div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Retour</button>
+            <button class="home-button" onclick="goToPage('page-2')">🏠</button>
+        </div>
     </section>
 
     <footer>
