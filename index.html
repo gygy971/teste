@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Vente Interactif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #d9faff, #cfe8ff);
+            color: #333;
+        }
 
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #0077b6;
+            color: white;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #023e8a;
+            transform: scale(1.1);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .menu button {
+            width: 200px;
+            height: 100px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .backdrop, .modal {
+            display: none;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer {
+            background: #03045e;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        let currentPage = 1;
+
+        function goToPage(page) {
+            document.querySelectorAll("section").forEach((section) => {
+                section.style.display = "none";
+            });
+            document.getElementById(page).style.display = "flex";
+        }
+
+        function handleNameSubmit() {
+            const name = document.getElementById("user-name").value;
+            if (name) {
+                document.getElementById("welcome-message").textContent = `Bienvenue, ${name} !`;
+                goToPage("page-2");
+            } else {
+                alert("Veuillez entrer votre prénom.");
+            }
+        }
+
+        function generateProducts() {
+            const productList = document.querySelector(".product-list");
+            const products = Array.from({ length: 12 }, (_, i) => ({
+                id: i + 1,
+                name: `Produit ${i + 1}`,
+                image: `https://placehold.co/300x300?text=Produit+${i + 1}`, 
+                description: `Description du produit ${i + 1}`,
+                price: `${(i + 1) * 10} €`,
+            }));
+
+            products.forEach((product) => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                `;
+                productCard.addEventListener("click", () => {
+                    openModal(product);
+                });
+                productList.appendChild(productCard);
+            });
+        }
+
+        function openModal(product) {
+            const modal = document.querySelector(".modal");
+            const backdrop = document.querySelector(".backdrop");
+
+            modal.querySelector("img").src = product.image;
+            modal.querySelector("h2").textContent = product.name;
+            modal.querySelector("p").textContent = product.description;
+            modal.querySelector(".price").textContent = `Prix : ${product.price}`;
+
+            modal.style.display = "flex";
+            backdrop.style.display = "block";
+        }
+
+        function closeModal() {
+            document.querySelector(".modal").style.display = "none";
+            document.querySelector(".backdrop").style.display = "none";
+        }
+
+        window.onload = () => {
+            goToPage("page-1");
+            generateProducts();
+        };
+    </script>
+</head>
+<body>
+    <!-- Page 1 -->
+    <section id="page-1">
+        <h1>Entrez votre prénom</h1>
+        <input type="text" id="user-name" placeholder="Votre prénom">
+        <button onclick="handleNameSubmit()">Valider</button>
+    </section>
+
+    <!-- Page 2 -->
+    <section id="page-2">
+        <h1 id="welcome-message"></h1>
+        <div class="menu">
+            <button onclick="goToPage('page-vente')">Vente</button>
+            <button onclick="goToPage('page-revente')">Revente</button>
+            <button onclick="goToPage('page-achat')">Achat</button>
+        </div>
+    </section>
+
+    <!-- Page Achat -->
+    <section id="page-achat">
+        <h1>Produits disponibles</h1>
+        <div class="product-list"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Site de Vente Interactif</p>
+    </footer>
+</body>
+</html>
