@@ -34,6 +34,10 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
         }
         .product-card img {
             width: 100%;
@@ -43,22 +47,70 @@
         .product-card h3 {
             margin: 10px 0;
         }
-        .product-card:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s;
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        .modal {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        .modal h2 {
+            margin: 0 0 10px;
+        }
+        .modal p {
+            margin: 10px 0;
+        }
+        .modal button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            background: #03045e;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
     <script>
-        // Fonction pour générer la liste des produits
         function generateProducts() {
             const productList = document.querySelector('.product-list');
             const products = Array.from({ length: 12 }, (_, i) => ({
                 id: i + 1,
                 name: `Produit ${i + 1}`,
                 image: `https://placehold.co/300x300?text=Produit+${i + 1}`,
+                description: `Ceci est une description du produit ${i + 1}.`,
+                price: `${(i + 1) * 10}€`
             }));
 
-            // Injecter les produits dans le HTML
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.classList.add('product-card');
@@ -66,23 +118,47 @@
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                 `;
-                productCard.addEventListener('click', () => {
-                    alert(`Vous avez sélectionné : ${product.name}`);
-                });
+                productCard.addEventListener('click', () => openModal(product));
                 productList.appendChild(productCard);
             });
         }
 
-        // Charger les produits après le chargement de la page
+        function openModal(product) {
+            const modal = document.querySelector('.modal');
+            const backdrop = document.querySelector('.backdrop');
+
+            modal.querySelector('img').src = product.image;
+            modal.querySelector('h2').textContent = product.name;
+            modal.querySelector('p').textContent = product.description;
+            modal.querySelector('.price').textContent = `Prix : ${product.price}`;
+
+            modal.style.display = 'flex';
+            backdrop.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.querySelector('.modal').style.display = 'none';
+            document.querySelector('.backdrop').style.display = 'none';
+        }
+
         window.onload = generateProducts;
     </script>
 </head>
 <body>
     <section>
         <h1>Produits disponibles</h1>
-        <div class="product-list">
-            <!-- Les produits seront injectés ici -->
-        </div>
+        <div class="product-list"></div>
     </section>
+    <div class="backdrop" onclick="closeModal()"></div>
+    <div class="modal">
+        <img src="" alt="">
+        <h2></h2>
+        <p></p>
+        <p class="price"></p>
+        <button onclick="closeModal()">Fermer</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Site de Vente Interactif</p>
+    </footer>
 </body>
 </html>
