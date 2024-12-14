@@ -4,189 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plateforme de Vente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background: linear-gradient(to bottom, #dceffe, #ffffff);
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #dfe9f3, #ffffff);
         }
-
-        header {
-            background-color: #003366;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
         .navbar {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin: 1rem;
-            position: fixed;
-            top: 0;
-            right: 0;
-        }
-
-        .navbar button {
-            background-color: #003366;
+            background-color: #0056b3;
             color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
         }
-
-        .navbar button:hover {
-            background-color: #0055cc;
-        }
-
-        .container {
-            padding: 2rem;
-        }
-
-        .category {
-            margin: 2rem 0;
-        }
-
-        .category h2 {
-            text-align: center;
-            color: #003366;
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
-        }
-
-        .product {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .product img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product h3 {
-            text-align: center;
-            margin: 0.5rem 0;
-        }
-
-        .product p {
-            padding: 0 1rem;
-            text-align: center;
-        }
-
-        .product button {
-            display: block;
-            margin: 1rem auto;
-            background-color: #003366;
+        .navbar a {
             color: white;
-            border: none;
-            padding: 0.5rem 1rem;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
-            border-radius: 5px;
         }
-
-        .product button:hover {
-            background-color: #0055cc;
-        }
-
-        .product:hover {
+        .product-card:hover {
             transform: scale(1.05);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn-primary {
+            background-color: #0056b3;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #003d80;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Plateforme de Vente</h1>
-    </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <div>
+                <a href="#">Accueil</a>
+                <a href="#">Recherche</a>
+                <a href="#">Catégories</a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="navbar">
-        <button onclick="goBack()">Retour</button>
-        <button onclick="goHome()">Accueil</button>
+    <!-- Header -->
+    <div class="container text-center my-4">
+        <h1 class="display-4">Bienvenue sur la Plateforme de Vente</h1>
+        <p>Recherchez et achetez les meilleurs produits dans diverses catégories.</p>
     </div>
 
+    <!-- Product Section -->
     <div class="container">
-        <div class="category">
-            <h2>Produits Électroniques</h2>
-            <div class="products">
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Smartphone" alt="Smartphone">
-                    <h3>Smartphone</h3>
-                    <p>Un smartphone performant avec un écran haute résolution.</p>
-                    <button>Acheter - 499€</button>
+        <h2 class="text-center mb-4">Produits Disponibles</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- Product Card Template -->
+            <div class="col">
+                <div class="card product-card">
+                    <img src="https://via.placeholder.com/300x200?text=Smartphone" class="card-img-top" alt="Smartphone">
+                    <div class="card-body">
+                        <h5 class="card-title">Smartphone</h5>
+                        <p class="card-text">Un smartphone performant avec un écran haute résolution.</p>
+                        <button class="btn btn-primary">Acheter - 499€</button>
+                    </div>
                 </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Laptop" alt="Laptop">
-                    <h3>Laptop</h3>
-                    <p>Un ordinateur portable idéal pour le travail et le divertissement.</p>
-                    <button>Acheter - 799€</button>
+            </div>
+            <div class="col">
+                <div class="card product-card">
+                    <img src="https://via.placeholder.com/300x200?text=Laptop" class="card-img-top" alt="Laptop">
+                    <div class="card-body">
+                        <h5 class="card-title">Laptop</h5>
+                        <p class="card-text">Un ordinateur portable idéal pour le travail et le divertissement.</p>
+                        <button class="btn btn-primary">Acheter - 799€</button>
+                    </div>
                 </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Casque" alt="Casque Audio">
-                    <h3>Casque Audio</h3>
-                    <p>Casque audio avec réduction de bruit active.</p>
-                    <button>Acheter - 199€</button>
+            </div>
+            <div class="col">
+                <div class="card product-card">
+                    <img src="https://via.placeholder.com/300x200?text=Casque+Audio" class="card-img-top" alt="Casque Audio">
+                    <div class="card-body">
+                        <h5 class="card-title">Casque Audio</h5>
+                        <p class="card-text">Casque audio avec réduction de bruit active.</p>
+                        <button class="btn btn-primary">Acheter - 199€</button>
+                    </div>
                 </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Caméra" alt="Caméra">
-                    <h3>Caméra</h3>
-                    <p>Caméra haute résolution pour capturer chaque instant.</p>
-                    <button>Acheter - 299€</button>
+            </div>
+            <div class="col">
+                <div class="card product-card">
+                    <img src="https://via.placeholder.com/300x200?text=Caméra" class="card-img-top" alt="Caméra">
+                    <div class="card-body">
+                        <h5 class="card-title">Caméra</h5>
+                        <p class="card-text">Caméra haute résolution pour capturer chaque instant.</p>
+                        <button class="btn btn-primary">Acheter - 299€</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="category">
-            <h2>Produits de Mode</h2>
-            <div class="products">
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Veste" alt="Veste">
-                    <h3>Veste</h3>
-                    <p>Une veste élégante et confortable pour l'hiver.</p>
-                    <button>Acheter - 99€</button>
-                </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Chaussures" alt="Chaussures">
-                    <h3>Chaussures</h3>
-                    <p>Chaussures stylées pour toutes les occasions.</p>
-                    <button>Acheter - 79€</button>
-                </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Sacs" alt="Sac à Main">
-                    <h3>Sac à Main</h3>
-                    <p>Un sac à main chic pour accompagner vos tenues.</p>
-                    <button>Acheter - 59€</button>
-                </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/300x200?text=Montre" alt="Montre">
-                    <h3>Montre</h3>
-                    <p>Montre élégante avec un bracelet en cuir.</p>
-                    <button>Acheter - 149€</button>
-                </div>
-            </div>
-        </div>
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Plateforme de Vente. Tous droits réservés.
     </div>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
+        // Ajout dynamique des produits (si besoin pour l'évolutivité)
+        const products = [
+            { title: "Smartphone", description: "Un smartphone performant avec un écran haute résolution.", price: "499€", image: "https://via.placeholder.com/300x200?text=Smartphone" },
+            { title: "Laptop", description: "Un ordinateur portable idéal pour le travail et le divertissement.", price: "799€", image: "https://via.placeholder.com/300x200?text=Laptop" },
+            { title: "Casque Audio", description: "Casque audio avec réduction de bruit active.", price: "199€", image: "https://via.placeholder.com/300x200?text=Casque+Audio" },
+            { title: "Caméra", description: "Caméra haute résolution pour capturer chaque instant.", price: "299€", image: "https://via.placeholder.com/300x200?text=Caméra" }
+        ];
 
-        function goHome() {
-            window.location.href = 'index.html';
-        }
+        const productContainer = document.querySelector(".row");
+        productContainer.innerHTML = products.map(product => `
+            <div class="col">
+                <div class="card product-card">
+                    <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.title}</h5>
+                        <p class="card-text">${product.description}</p>
+                        <button class="btn btn-primary">Acheter - ${product.price}</button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
     </script>
 </body>
 </html>
