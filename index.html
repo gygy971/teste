@@ -3,146 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plateforme de Vente - Accueil</title>
+    <title>Plateforme de Vente</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #d9f1ff, #a0c4ff);
-            color: #333;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f8f9fa, #e9ecef);
         }
 
         header {
-            background-color: #004aad;
-            color: white;
-            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #0056b3;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        header nav a:hover {
+            background-color: #003d82;
+        }
+
+        .container {
             text-align: center;
+            padding: 50px 20px;
         }
 
-        main {
-            padding: 2rem;
+        .category {
+            display: inline-block;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 200px;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-
-        .product-card img {
+        .category img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            border-radius: 10px;
         }
 
-        .product-card h3 {
-            margin: 0.5rem 0;
-        }
-
-        .product-card p {
-            margin: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .product-card button {
-            background: #004aad;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .product-card button:hover {
-            background: #002b6c;
-        }
-
-        .navigation {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .navigation button {
-            margin: 0 0.5rem;
-            background: #004aad;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .navigation button:hover {
-            background: #002b6c;
+        .category h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
         }
 
         footer {
-            background-color: #004aad;
-            color: white;
+            background-color: #343a40;
+            color: #fff;
             text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 10px;
         }
+
     </style>
 </head>
 <body>
     <header>
         <h1>Plateforme de Vente</h1>
+        <nav>
+            <a href="#" onclick="goBack()">Retour</a>
+            <a href="#">Accueil</a>
+        </nav>
     </header>
-    <main>
-        <h2>Produits Disponibles</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1592832129355-d2bca0f0c5b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=400" alt="Produit 1">
-                <h3>Produit 1</h3>
-                <p>Description rapide du produit 1.</p>
-                <button>Acheter - 25€</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1512499617640-c2f999678c06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=400" alt="Produit 2">
-                <h3>Produit 2</h3>
-                <p>Description rapide du produit 2.</p>
-                <button>Acheter - 30€</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=400" alt="Produit 3">
-                <h3>Produit 3</h3>
-                <p>Description rapide du produit 3.</p>
-                <button>Acheter - 20€</button>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1533313260982-3016b2ce7918?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=400" alt="Produit 4">
-                <h3>Produit 4</h3>
-                <p>Description rapide du produit 4.</p>
-                <button>Acheter - 15€</button>
-            </div>
+
+    <div class="container">
+        <h2>Bienvenue sur notre plateforme de vente</h2>
+        <p>Sélectionnez une catégorie ci-dessous pour découvrir nos produits.</p>
+
+        <div class="category" onclick="window.location.href='electronique.html'">
+            <img src="https://via.placeholder.com/200x150" alt="Electronique">
+            <h3>Electronique</h3>
         </div>
-        <div class="navigation">
-            <button>Précédent</button>
-            <button>Accueil</button>
+
+        <div class="category" onclick="window.location.href='mode.html'">
+            <img src="https://via.placeholder.com/200x150" alt="Mode">
+            <h3>Mode</h3>
         </div>
-    </main>
+
+        <div class="category" onclick="window.location.href='maison.html'">
+            <img src="https://via.placeholder.com/200x150" alt="Maison">
+            <h3>Maison</h3>
+        </div>
+
+        <div class="category" onclick="window.location.href='sports.html'">
+            <img src="https://via.placeholder.com/200x150" alt="Sports">
+            <h3>Sports</h3>
+        </div>
+
+        <div class="category" onclick="window.location.href='beaute.html'">
+            <img src="https://via.placeholder.com/200x150" alt="Beauté">
+            <h3>Beauté</h3>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Plateforme de Vente</p>
+        &copy; 2024 Plateforme de Vente - Tous droits réservés
     </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
