@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site de Vente Interactif - Détaillé</title>
+    <title>Site de Vente Interactif</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background: linear-gradient(120deg, #f6d365, #fda085);
+            background: linear-gradient(120deg, #d9faff, #cfe8ff);
             color: #333;
         }
 
@@ -37,15 +37,6 @@
             color: white;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        .container {
-            text-align: center;
-            max-width: 800px;
-        }
-
         nav {
             display: flex;
             justify-content: space-around;
@@ -54,34 +45,97 @@
 
         nav button {
             width: 30%;
+            height: 150px;
+            font-size: 1.5rem;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+            border: none;
+        }
+
+        nav button:hover {
+            opacity: 0.8;
+        }
+
+        #nav-vente {
+            background-image: url('https://via.placeholder.com/150?text=Vente');
+        }
+
+        #nav-revente {
+            background-image: url('https://via.placeholder.com/150?text=Revente');
+        }
+
+        #nav-achat {
+            background-image: url('https://via.placeholder.com/150?text=Achat');
         }
 
         .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
 
         .product-card {
             background: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 1rem;
-            width: 300px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
         }
 
         .product-card img {
-            max-width: 100%;
-            border-radius: 10px;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
         }
 
-        .form-section {
-            text-align: left;
-            margin-top: 2rem;
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-modal {
+            position: fixed;
+            top: 15cm;
+            left: 15cm;
+            right: 15cm;
+            bottom: 15cm;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-modal img {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .product-modal button {
+            margin-top: 20px;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
         }
 
         footer {
@@ -93,14 +147,6 @@
             bottom: 0;
             width: 100%;
         }
-
-        h1, h2 {
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
     </style>
     <script>
         function showPage(pageId) {
@@ -109,100 +155,66 @@
             document.getElementById(pageId).classList.remove('hidden');
         }
 
-        function addProduct() {
-            const productName = document.getElementById('product-name').value;
-            const productDescription = document.getElementById('product-description').value;
-            const productImage = document.getElementById('product-image').value;
-            const productList = document.getElementById('product-list');
+        function openProductModal(productId) {
+            const productModal = document.getElementById('product-modal');
+            const productImage = document.getElementById('modal-image');
+            const productName = document.getElementById('modal-name');
+            const productPrice = document.getElementById('modal-price');
 
-            if (productName && productDescription && productImage) {
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
-                productCard.innerHTML = `
-                    <img src="${productImage}" alt="${productName}">
-                    <h3>${productName}</h3>
-                    <p>${productDescription}</p>
-                `;
-                productList.appendChild(productCard);
-            }
+            // Example data
+            productImage.src = `https://via.placeholder.com/300?text=Produit+${productId}`;
+            productName.textContent = `Produit ${productId}`;
+            productPrice.textContent = `Prix : ${productId * 10}€`;
+
+            document.querySelector('.backdrop').style.display = 'block';
+            productModal.style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.querySelector('.backdrop').style.display = 'none';
+            document.getElementById('product-modal').style.display = 'none';
         }
     </script>
 </head>
 <body>
 
-    <!-- Page 1 -->
-    <section id="page1">
-        <div class="container">
-            <h1>Bienvenue sur notre site de vente</h1>
-            <p>Entrez votre prénom pour continuer :</p>
-            <input type="text" id="prenom" placeholder="Votre prénom">
-            <button onclick="showPage('page2')">Valider</button>
-        </div>
-    </section>
-
-    <!-- Page 2 -->
+    <!-- Page principale -->
     <section id="page2" class="hidden">
         <div class="container">
             <h1>Que souhaitez-vous faire ?</h1>
-            <p>Choisissez une option ci-dessous pour continuer.</p>
             <nav>
-                <button onclick="showPage('page2a')">Vente</button>
-                <button onclick="showPage('page2b')">Revente</button>
-                <button onclick="showPage('page2c')">Achat</button>
+                <button id="nav-vente" onclick="showPage('page2a')">Vente</button>
+                <button id="nav-revente" onclick="showPage('page2b')">Revente</button>
+                <button id="nav-achat" onclick="showPage('page2c')">Achat</button>
             </nav>
         </div>
     </section>
 
-    <!-- Page 2a: Vente -->
-    <section id="page2a" class="hidden">
-        <div class="container">
-            <h1>Vente via AliExpress</h1>
-            <p>Accédez à AliExpress pour trouver les meilleurs produits à vendre.</p>
-            <a href="https://www.aliexpress.com" target="_blank">
-                <button>Accéder à AliExpress</button>
-            </a>
-            <button onclick="showPage('page2')">Retour</button>
-        </div>
-    </section>
-
-    <!-- Page 2b: Revente -->
-    <section id="page2b" class="hidden">
-        <div class="container">
-            <h1>Ajoutez vos produits à vendre</h1>
-            <p>Entrez les détails de vos produits pour les proposer à la vente.</p>
-            <div class="form-section">
-                <label for="product-name">Nom du produit :</label><br>
-                <input type="text" id="product-name" placeholder="Nom du produit"><br>
-                <label for="product-description">Description du produit :</label><br>
-                <textarea id="product-description" placeholder="Description"></textarea><br>
-                <label for="product-image">URL de l'image :</label><br>
-                <input type="text" id="product-image" placeholder="URL de l'image"><br>
-                <button onclick="addProduct()">Ajouter le produit</button>
-            </div>
-            <button onclick="showPage('page2')">Retour</button>
-        </div>
-    </section>
-
-    <!-- Page 2c: Achat -->
+    <!-- Page achat -->
     <section id="page2c" class="hidden">
         <div class="container">
             <h1>Produits disponibles à l'achat</h1>
-            <p>Découvrez les produits proposés par les utilisateurs.</p>
-            <div id="product-list" class="product-list">
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300" alt="Produit 1">
-                    <h3>Produit exemple 1</h3>
-                    <p>Description du produit exemple 1</p>
-                </div>
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/300" alt="Produit 2">
-                    <h3>Produit exemple 2</h3>
-                    <p>Description du produit exemple 2</p>
-                </div>
+            <div class="product-list">
+                <!-- Exemple de produits -->
+                ${Array.from({ length: 100 }, (_, i) => `
+                    <div class="product-card" onclick="openProductModal(${i + 1})">
+                        <img src="https://via.placeholder.com/300?text=Produit+${i + 1}" alt="Produit ${i + 1}">
+                        <h3>Produit ${i + 1}</h3>
+                    </div>
+                `).join('')}
             </div>
-            <button onclick="showPage('page2')">Retour</button>
         </div>
     </section>
+
+    <!-- Modal pour les produits -->
+    <div class="backdrop" onclick="closeProductModal()"></div>
+    <div id="product-modal" class="product-modal">
+        <img id="modal-image" src="" alt="">
+        <h2 id="modal-name"></h2>
+        <p id="modal-price"></p>
+        <button onclick="showPage('page2')">Acheter</button>
+        <button onclick="closeProductModal()">Fermer</button>
+    </div>
 
     <footer>
         <p>&copy; 2024 Site de Vente Interactif</p>
