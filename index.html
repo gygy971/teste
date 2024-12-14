@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plateforme d'Affiliation</title>
     <style>
-        /* Styles globaux */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,81 +22,8 @@
             color: white;
         }
 
-        header img {
-            height: 50px;
-        }
-
         header h1 {
             margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .navigation {
-            display: flex;
-            gap: 10px;
-        }
-
-        .navigation button {
-            background: white;
-            color: #0077b6;
-            border: 1px solid #0077b6;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .navigation button:hover {
-            background: #023e8a;
-            color: white;
-        }
-
-        .search-bar {
-            margin: 1rem 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .search-bar input {
-            width: 60%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .search-bar button {
-            background: #0077b6;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .categories {
-            margin: 1rem 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .categories button {
-            flex: 1;
-            min-width: 200px;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: #90e0ef;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .categories button:hover {
-            transform: scale(1.1);
         }
 
         .product-list {
@@ -133,50 +59,6 @@
             margin: 0.5rem 0;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 10%;
-            left: 10%;
-            right: 10%;
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        .modal img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .modal h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal .price {
-            font-size: 1.2rem;
-            color: #0077b6;
-            margin-bottom: 1rem;
-        }
-
-        .modal button {
-            background: #0077b6;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .modal button:hover {
-            background: #023e8a;
-        }
-
         footer {
             background: #03045e;
             color: white;
@@ -184,19 +66,35 @@
             padding: 1rem;
         }
     </style>
-    <script>
-        const categories = {
-            "Électronique": [
-                { name: "Smartphone Samsung Galaxy S21", price: "699€", image: "https://m.media-amazon.com/images/I/81r1vO0bAVL._AC_SX679_.jpg", description: "Smartphone avec écran AMOLED, triple caméra et design élégant.", link: "https://amzn.to/3Y0yz7e" },
-                { name: "Casque Bose QuietComfort 35 II", price: "249€", image: "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SX679_.jpg", description: "Casque Bluetooth haut de gamme avec réduction de bruit.", link: "https://amzn.to/3Y2lQml" },
-                { name: "Montre Connectée Apple Watch Series 7", price: "429€", image: "https://m.media-amazon.com/images/I/71z5xjU14LL._AC_SX679_.jpg", description: "Montre connectée avec écran Retina, GPS et suivi santé.", link: "https://amzn.to/3PxW9rT" }
-            ],
-            "Maison": [
-                { name: "Aspirateur Dyson V10 Absolute", price: "599€", image: "https://m.media-amazon.com/images/I/71wYpu2yPFL._AC_SX679_.jpg", description: "Aspirateur sans fil puissant pour tous types de sols.", link: "https://amzn.to/3PoO8lU" },
-                { name: "Robot Cuiseur Moulinex Companion", price: "749€", image: "https://m.media-amazon.com/images/I/71Q1m9wYOJL._AC_SX679_.jpg", description: "Robot cuiseur multifonction pour des plats maison faciles.", link: "https://amzn.to/3Pe4M0M" },
-                { name: "Fauteuil de Bureau Ergonomique", price: "129€", image: "https://m.media-amazon.com/images/I/71UG9GeUr8L._AC_SX679_.jpg", description: "Confort optimal pour les longues journées de travail.", link: "https://amzn.to/3sYrWxR" }
-            ],
-            "Mode": [
-                { name: "Veste en Cuir Homme", price: "199€", image: "https://m.media-amazon.com/images/I/81QNz+NKmQL._AC_UX679_.jpg", description: "Veste élégante et intemporelle en cuir véritable.", link: "https://amzn.to/3L6rJmy" },
-                { name: "Montre Fossil Femme", price: "159€", image: "https://m.media-amazon.com/images/I/71aG+EF1N+L._AC_UX679_.jpg", description: "Montre mode avec bracelet doré et cadran élégant.", link: "https://amzn.to/3L5UM9Z" },
-                { name: "Sneakers Nike Air Max", price: "129€", image: "https://m.media-amazon.com/images/I/71K9GbF4bzL._AC_UX679_.jpg", description: "Baskets confortables avec un design
+</head>
+<body>
+    <header>
+        <h1>Plateforme d'Affiliation</h1>
+    </header>
+
+    <section class="product-list">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Produit 1">
+            <h2>Produit 1</h2>
+            <p class="price">29,99 €</p>
+            <p>Un produit exceptionnel pour vos besoins quotidiens.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Produit 2">
+            <h2>Produit 2</h2>
+            <p class="price">49,99 €</p>
+            <p>Un produit de haute qualité à un prix abordable.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Produit 3">
+            <h2>Produit 3</h2>
+            <p class="price">19,99 €</p>
+            <p>Découvrez ce produit populaire auprès de nos clients.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Plateforme d'Affiliation - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
