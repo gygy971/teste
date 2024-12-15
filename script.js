@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Liste des produits avec leurs informations
     const produits = [
         {
             titre: "Smartphone",
@@ -27,19 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    // Sélection de l'élément conteneur pour afficher les produits
     const produitConteneur = document.querySelector(".produits");
-
-    // Génération dynamique du contenu HTML pour les produits
     produitConteneur.innerHTML = produits.map(produit => `
-        <div class="col">
-            <div class="card produit-carte">
-                <img src="${produit.image}" class="card-img-top" alt="${produit.titre}">
-                <div class="card-body">
-                    <h5 class="card-title">${produit.titre}</h5>
-                    <p class="card-text">${produit.description}</p>
-                    <button class="btn btn-primary">Acheter - ${produit.prix}</button>
-                </div>
+        <div class="produit-carte">
+            <img src="${produit.image}" class="card-img-top" alt="${produit.titre}">
+            <div class="card-body">
+                <h5 class="card-title">${produit.titre}</h5>
+                <p class="card-text">${produit.description}</p>
+                <button class="btn btn-primary">Acheter - ${produit.prix}</button>
             </div>
         </div>
     `).join("");
