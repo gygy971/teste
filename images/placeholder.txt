@@ -1,1 +1,4 @@
-
+<img src="images/smartphone.jpg" alt="Smartphone">
+<img src="images/laptop.jpg" alt="Laptop">
+<img src="images/headphones.jpg" alt="Headphones">
+<img src="images/camera.jpg" alt="Camera">
