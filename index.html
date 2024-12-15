@@ -9,31 +9,44 @@
 <body>
     <header>
         <div class="header-container">
+            <img src="images/logo.png" alt="Logo Plateforme" class="logo">
             <h1>Bienvenue sur la Plateforme de Vente</h1>
-            <p>Recherchez et achetez les meilleurs produits dans diverses catégories.</p>
+            <p>Découvrez et achetez des produits de qualité dans plusieurs catégories.</p>
         </div>
         <nav>
-            <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Recherche</a></li>
-                <li><a href="#">Catégories</a></li>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#produits">Produits</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-<div class="produits"></div>
-
     <main>
-        <section class="produits">
-            <h2>Produits Disponibles</h2>
-            <div class="produit-container" id="produit-container">
-                <!-- Les produits générés par JavaScript apparaîtront ici -->
+        <!-- Section Accueil -->
+        <section id="accueil" class="accueil-section">
+            <h2>Bienvenue sur notre boutique en ligne</h2>
+            <p>Nous offrons une large gamme de produits pour répondre à tous vos besoins.</p>
+        </section>
+
+        <!-- Section Produits -->
+        <section id="produits" class="produits-section">
+            <h2>Nos Produits</h2>
+            <div id="produit-container" class="produit-container">
+                <!-- Les produits seront injectés ici via JavaScript -->
             </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="contact-section">
+            <h2>Contactez-nous</h2>
+            <p>Pour toute question, écrivez-nous à <a href="mailto:support@plateformevente.com">support@plateformevente.com</a>.</p>
         </section>
     </main>
 
     <footer>
         <p>© 2024 Plateforme de Vente. Tous droits réservés.</p>
+        <p><a href="#accueil">Retour en haut</a></p>
     </footer>
 
     <script src="script.js"></script>
