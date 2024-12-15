@@ -1,39 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plateforme de Vente</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <div class="logo">Logo</div>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="#recherche">Recherche</a>
-      <a href="#categories">Catégories</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="welcome">
-      <h1>Bienvenue sur la Plateforme de Vente</h1>
-      <p>Recherchez et achetez les meilleurs produits dans diverses catégories.</p>
-    </section>
-
-    <section class="products">
-      <h2>Produits Disponibles</h2>
-      <div class="product-list">
-        <!-- Les produits seront générés par JavaScript -->
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Plateforme de Vente. Tous droits réservés.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+const produits = [
+    {
+        titre: "Smartphone",
+        description: "Un smartphone performant avec un écran haute résolution.",
+        prix: "499€",
+        image: "images/smartphone.jpg",
+    },
+    {
+        titre: "Laptop",
+        description: "Un ordinateur portable idéal pour le travail et le divertissement.",
+        prix: "799€",
+        image: "images/ordinateur portable.jpg", // Assurez-vous que ce chemin est correct
+    },
+    {
+        titre: "Casque Audio",
+        description: "Casque audio avec réduction de bruit active.",
+        prix: "199€",
+        image: "images/casque.jpg",
+    },
+    {
+        titre: "Caméra",
+        description: "Caméra haute résolution pour capturer chaque instant.",
+        prix: "299€",
+        image: "images/appareil photo.jpg",
+    },
+];
