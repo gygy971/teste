@@ -1,58 +1,64 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-.produits {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.produit-carte {
-    width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+header {
+    background-color: #004aad;
+    color: white;
+    padding: 10px 0;
     text-align: center;
-    overflow: hidden;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background: #003580;
 }
 
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.card-text {
-    font-size: 14px;
-    color: #666;
-    margin: 0 10px 10px;
-}
-
-.btn-primary {
+nav ul li {
     display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    margin-bottom: 10px;
+    margin: 0 15px;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.produits-section {
+    margin: 20px;
+    text-align: center;
+}
+
+.produit-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.produit-container .produit {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #003580;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
